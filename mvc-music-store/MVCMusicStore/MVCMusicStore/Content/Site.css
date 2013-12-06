@@ -1,0 +1,78 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    background-color: #B20000!important;
+    color: #fff!important;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* styles for validation helpers */
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+.jumbotron {
+    background-color: #FF1919;
+    box-shadow: inset 0px 0px 30px #B20000, 0px 0px 4px #f00;
+    border-radius: 0 0 0px 0px!important;
+    padding: 10px 40px 10px;
+    margin: 0;
+}
+
+h1, h2, h3, h4 {
+    /* color: #00B233!important; */
+    color: #fff!important;
+    text-shadow: -2px 2px 2px #555;
+}
+
+p, address {
+    color: #fafafa;
+}
+
+.btn {
+
+    background-color: #00FF48;
+    border:none;
+    color: #000;
+}
+
+    .btn:hover {
+        background-color: #00B233;
+
+    }
+
+dl {
+    color: #fff;
+}
