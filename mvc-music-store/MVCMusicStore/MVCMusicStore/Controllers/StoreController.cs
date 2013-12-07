@@ -23,6 +23,7 @@ namespace MVCMusicStore.Controllers
             return View(genres);
         }
 
+
         // GET: /Store/Browse
         public ActionResult Browse(string genre)
         {
@@ -36,5 +37,11 @@ namespace MVCMusicStore.Controllers
             var album = new Album { Title = "Album " + id };
             return View(album);
         }
+
+        public ActionResult Products() {
+
+            return View();
+        }
+
     }
 }
