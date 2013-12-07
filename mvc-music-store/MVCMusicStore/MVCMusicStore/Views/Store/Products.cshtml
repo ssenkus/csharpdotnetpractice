@@ -1,8 +1,6 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Products";
 }
-
     <div>
         <h2>All Products</h2>
         <ul id="products"></ul>
@@ -11,14 +9,13 @@
         <h2>Search by ID</h2>
         <input type="text" id="prodId" size="5" />
         <input type="button" value="Search" id="searchBtn" />
+        <img id="ajaxLoad" style="display:none;" src='@Url.Content("~/Content/Images/ajax-load.gif")' />
         <p id="product" />
     </div>
 
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
     <script>
         var uri = 'api/products';
-
-
 
         $(document).ready(function () {
 
@@ -46,6 +43,9 @@
 
         function find() {
             var id = $('#prodId').val();
+            $('#ajaxLoad').fadeIn(500, function () {
+                $(this).fadeOut(500);
+            });
             $.getJSON(uri + '/' + id)
                 .done(function (data) {
                     $('#product').text(formatItem(data));
