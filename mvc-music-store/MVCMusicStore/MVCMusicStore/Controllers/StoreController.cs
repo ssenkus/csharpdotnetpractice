@@ -9,6 +9,7 @@ namespace MVCMusicStore.Controllers
 {
     public class StoreController : Controller
     {
+
         //
         // GET: /Store/
         public ActionResult Index()
