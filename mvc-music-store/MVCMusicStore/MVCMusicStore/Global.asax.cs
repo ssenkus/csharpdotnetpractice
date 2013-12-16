@@ -7,6 +7,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.Http.WebHost;
 using System.Web.Http;
+using MVCMusicStore.Models;
 
 namespace MVCMusicStore
 {
@@ -14,7 +15,7 @@ namespace MVCMusicStore
     {
         protected void Application_Start()
         {
-
+            System.Data.Entity.Database.SetInitializer(new MVCMusicStore.Models.SampleData());
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             //WebApiConfig.Register(GlobalConfiguration.Configuration);

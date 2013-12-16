@@ -44,7 +44,7 @@ input[type="checkbox"].input-validation-error {
 }
 
 .jumbotron {
-    background-color: #FF1919;
+    background-color: #0D537F;
     box-shadow: inset 0px 0px 30px #B20000, 0px 0px 4px #f00;
     border-radius: 0 0 0px 0px!important;
     padding: 10px 40px 10px;
@@ -75,4 +75,16 @@ p, address {
 
 dl {
     color: #fff;
+}
+
+#navbar-logo {
+    margin-top: 10px;
+    width: 50px;
+}
+
+
+a {
+    color: #BFBC13;
+    font-size: 16px;
+    font-weight: bold;
 }
