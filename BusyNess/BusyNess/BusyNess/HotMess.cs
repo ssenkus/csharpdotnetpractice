@@ -139,7 +139,7 @@ namespace BusyNess
 
         private static void WriteConsole(int lineNumber)
         {
-            Console.Write(string.Format("{0,3} |{1}{2}\n", lineNumber.ToString(), (lineNumber % 3 == 0) ? "Hot" : "", (lineNumber % 5 == 0) ? "MESS" : ""));
+            Console.Write(string.Format("{0,3} |{1}{2}\n", lineNumber.ToString(), (lineNumber % 3 == 0) ? "Hot" : "", (lineNumber % 7 == 0) ? "MESS" : ""));
         }
     }
 }
