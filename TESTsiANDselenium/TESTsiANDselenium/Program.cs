@@ -34,7 +34,8 @@ namespace TESTsiANDselenium
                 driver.FindElement(By.CssSelector("input[type=\"submit\"]")).Click();
                 var d = driver.FindElement(By.CssSelector("body"));
                 Console.WriteLine("{0}:\n #################\n{1}", a, d.Text);
-                if (d.Text == "Welcome jake you are now logged in!") {
+                if (d.Text == "Welcome jake you are now logged in!")
+                {
                     result += a;
                 }
                 //Console.Read();
