@@ -200,6 +200,7 @@
     <Compile Include="Models\States.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tracing\WebApiTracer.cs" />
+    <Compile Include="Validators\CountryStatePairAttribute.cs" />
     <Compile Include="Validators\LocationCheckerAttribute.cs" />
   </ItemGroup>
   <ItemGroup>

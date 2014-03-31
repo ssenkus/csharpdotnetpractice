@@ -14,8 +14,6 @@ namespace PracticalWebAPI.Validators
         {
             this.ErrorMessage = "ERROR: {0}:{1} is not a US State.";
         }
-        public string Country { get; set; }
-        public string State { get; set; }
 
         public string FormatErrorMessage(string name, string stateVal)
         {
