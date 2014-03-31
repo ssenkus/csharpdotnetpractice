@@ -17,21 +17,24 @@ namespace PracticalWebAPI.Controllers
                 FirstName = "Hello",
                 LastName = "World",
                 Email = "hello@world.xxx",
-                country = "US"
+                Country = "US",
+                State = "OR"
             },
             new Lead() {
                 Id = 20000,
                 FirstName = "Derp",
                 LastName = "Dingalong",
                 Email = "derp@derp.com",
-                country = "DP"
+                Country = "DP",
+                State = null
             },
             new Lead() {
                 Id = 90000,
                 FirstName = "Ling",
                 LastName = "Xiohung",
                 Email = "lxi@lxi.gov",
-                country = "CH"
+                Country = "CH",
+                State = null
             },
         };
 

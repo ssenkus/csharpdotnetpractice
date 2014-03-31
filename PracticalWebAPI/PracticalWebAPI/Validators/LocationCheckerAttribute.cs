@@ -3,32 +3,38 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
+using PracticalWebAPI.Models;
 
 namespace PracticalWebAPI.Validators
 {
     public class LocationCheckerAttribute : ValidationAttribute
     {
-        public LocationCheckerAttribute(string country) {
-            this.Country = country;
-            // this class still needs to be written!  not done!
-        }
-
-        public string Country { get; set; }
-
-        public override string FormatErrorMessage(string name)
+        public LocationCheckerAttribute()
         {
-            return string.Format(ErrorMessageString, name, this.Country);
+            this.ErrorMessage = "ERROR: {0}:{1} is not a US State.";
+        }
+        public string Country { get; set; }
+        public string State { get; set; }
+
+        public string FormatErrorMessage(string name, string stateVal)
+        {
+            return string.Format(ErrorMessageString, name, stateVal);
         }
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            string cnt = (string)value;
-
-
-
-
-
-            return base.IsValid(value, validationContext);
+            string state = (string)value;
+            var statesList = new StatesList();
+            var states = statesList.dict();
+            foreach (KeyValuePair<string, string> item in states)
+            {
+                if (item.Key == state)
+                {
+                    return ValidationResult.Success;
+                }
+            }
+            return new ValidationResult(FormatErrorMessage(validationContext.DisplayName, state));
         }
 
     }

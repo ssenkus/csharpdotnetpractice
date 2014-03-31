@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using PracticalWebAPI.Validators;
 
 namespace PracticalWebAPI.Models
 {
@@ -24,8 +25,12 @@ namespace PracticalWebAPI.Models
         [Required]
         [MaxLength(2, ErrorMessage="COUNTRY should only be max 2 characters.  You're fugging up, ya know!")]
 
-        public string country { get; set; }
+        
 
+        [LocationChecker]
+        public string State { get; set;  }
+
+        public string Country { get; set; }
 
     }
 }
