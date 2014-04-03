@@ -24,7 +24,7 @@ namespace PracticalWebAPI.Controllers
                 country = "US"
             },
             new Client() {
-                id = 0,
+                id = 1,
                 firstName = "Hello",
                 lastName = "World",
                 streetAddress = "Awesomestrasse 123",

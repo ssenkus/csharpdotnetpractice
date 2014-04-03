@@ -19,9 +19,9 @@ namespace PracticalWebAPI.Infrastructure
 
         public override bool IsValid(object value)
         {
-            Debug.WriteLine(" IsValid?");
+            Debug.WriteLine("IsValid?");
             Client client = value as Client;
-            if (client == null)
+            if (client.country == null)
             {
                 // nothing sent
                 this.ErrorMessage = "Client is null";
@@ -29,40 +29,46 @@ namespace PracticalWebAPI.Infrastructure
             }
             else
             {
-                // data has been sent
-                bool US = client.country == "US";
+
                 bool stateSet = !String.IsNullOrEmpty(client.state);
-                Debug.WriteLine("US?", US.ToString());
-                Debug.WriteLine("stateSet?", stateSet.ToString());
 
-                if (!US && !stateSet)
+                switch (client.country)
                 {
-                    Debug.WriteLine("International countries do not have states yet, so all good");
-                    return true;
+                    case "US":
+                        // US validation - state must be set and abbr. should be in the dictionary keys
+                        Dictionary<string, string> states = new StatesList().dict();
 
+                        // empty state?  DENIED
+                        if (client.state == null)
+                        {
+                            ErrorMessage = "US && no state!  Bad news...";
+                            return false;
+                        }
+                        // state abbr. not found in dictionary key? DENIED
+                        else if (!states.ContainsKey(client.state))
+                        {
+                            Debug.WriteLine(String.Format("US?: {0} && stateSet: {1}", client.country, client.state));
+                            return false;
+                        }
+                        else
+                        {
+                            return true;
+                        }
+                    default:
+                        // INTERNATIONAL
+                        // Non-US and has a state?  DENIED
+                        if (client.state != null)
+                        {
+                            Debug.WriteLine(String.Format("US?: {0} && stateSet: {1}", client.country, client.state));
+                            ErrorMessage = "Non-US countries should not have states";
+                            return false;
+                        }
+                        else
+                        {
+                            Debug.WriteLine("International countries do not have a states option set yet, so all good");
+                            return true;
+                        }
                 }
-                else if (!US && stateSet)
-                {
-                    Debug.WriteLine(String.Format("US?: {0} && stateSet: {1}", client.country, client.state));
-                    ErrorMessage = "Non-US countries should not have states";
-                    return false;
-
-                }
-                else if (US && stateSet)
-                {
-
-                    Debug.WriteLine(String.Format("US?: {0} && stateSet: {1}", client.country, client.state));
-                    return true;
-
-                }
-                else if (US && !stateSet)
-                {
-                    Debug.WriteLine("US && no state!  Bad news...");
-                    ErrorMessage = "US && no state!  Bad news...";
-                    return false;
-
-                }
-                return false;
             }
         }
 
