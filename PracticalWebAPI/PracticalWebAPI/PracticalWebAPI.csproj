@@ -189,6 +189,7 @@
     <Compile Include="Controllers\CatController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
+    <Compile Include="Controllers\FileUploadController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LeadController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -337,9 +338,11 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\FileUpload\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Uploads\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
