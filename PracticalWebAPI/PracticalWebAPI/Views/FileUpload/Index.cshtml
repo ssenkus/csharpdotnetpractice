@@ -4,6 +4,12 @@
 }
 
 <h2>Index</h2>
+@foreach(var x in ViewBag.files) 
+{
+    <p>@x</p>
+
+}
+
 
 @using (Html.BeginForm("Index", "FileUpload", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {

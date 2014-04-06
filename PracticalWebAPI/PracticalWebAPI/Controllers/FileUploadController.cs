@@ -14,6 +14,14 @@ namespace PracticalWebAPI.Controllers
         // GET: /FileUpload/
         public ActionResult Index()
         {
+
+            var files = Directory.GetFiles(Server.MapPath("~/Content/Uploads"));
+            foreach (var item in files)
+            {
+
+                Debug.WriteLine(item.ToString());
+            }
+            ViewBag.files = files;
             return View();
         }
 
@@ -31,16 +39,16 @@ namespace PracticalWebAPI.Controllers
             return View();
         }
 
-        //
+
         // POST: /FileUpload/Create
-        /*
+
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
             try
             {
-                
-                
+
+
                 // TODO: Add insert logic here
 
                 return RedirectToAction("Index");
@@ -49,8 +57,7 @@ namespace PracticalWebAPI.Controllers
             {
                 return View();
             }
-        } */
-
+        }
         [HttpPost]
         public ActionResult Index(HttpPostedFileBase file)
         {
