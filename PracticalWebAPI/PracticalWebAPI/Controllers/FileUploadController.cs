@@ -14,7 +14,11 @@ namespace PracticalWebAPI.Controllers
         // GET: /FileUpload/
         public ActionResult Index()
         {
-
+            var z = Directory.EnumerateFiles(Server.MapPath("~/Content/Uploads"));
+            foreach (var item in z ) 
+            {
+                Debug.WriteLine(item);
+            }
             var files = Directory.GetFiles(Server.MapPath("~/Content/Uploads"));
             foreach (var item in files)
             {

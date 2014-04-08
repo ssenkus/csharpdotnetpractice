@@ -26,7 +26,7 @@ namespace PracticalWebAPI.Controllers
                 LastName = "Dingalong",
                 Email = "derp@derp.com",
                 Country = "DP",
-                State = null
+                State = "DO"
             },
             new Lead() {
                 Id = 90000,
@@ -34,7 +34,7 @@ namespace PracticalWebAPI.Controllers
                 LastName = "Xiohung",
                 Email = "lxi@lxi.gov",
                 Country = "CH",
-                State = null
+                State = "BA"
             },
         };
 

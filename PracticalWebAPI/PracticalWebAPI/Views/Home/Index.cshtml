@@ -1,45 +1,111 @@
-﻿<div id="body">
-    <section class="featured">
-        <div class="content-wrapper">
-            <hgroup class="title">
-                <h1>Welcome to ASP.NET Web API!</h1>
-                <h2>Modify the code in this template to jump-start your ASP.NET Web API development.</h2>
-            </hgroup>
-            <p>
-                ASP.NET Web API allows you to expose your applications, data and services to the
-                web directly over HTTP.
-            </p>
-            <p>
-                To learn more about ASP.NET Web API visit the
-                <a href="http://go.microsoft.com/fwlink/?LinkID=238195" title="ASP.NET Web API Website">ASP.NET Web API Website</a>.
-                The page features <mark>videos, tutorials, and samples</mark> to help you get the most from ASP.NET Web API.
-                If you have any questions about ASP.NET Web API, visit
-                <a href="http://go.microsoft.com/fwlink/?LinkID=238196" title="ASP.NET Web API Forum">our forums</a>.
-            </p>
-        </div>
-    </section>
-    <section class="content-wrapper main-content clear-fix">
-        <h3>We suggest the following steps:</h3>
-        <ol class="round">
-            <li class="one">
-                <h5>Getting Started</h5>
-                ASP.NET Web API is a framework that makes it easy to build HTTP services that reach
-                a broad range of clients, including browsers and mobile devices. ASP.NET Web API
-                is an ideal platform for building RESTful applications on the .NET Framework.
-                <a href="http://go.microsoft.com/fwlink/?LinkId=245160">Learn more…</a>
-            </li>
+﻿@section  Scripts {
 
-            <li class="two">
-                <h5>Add NuGet packages and jump-start your coding</h5>
-                NuGet makes it easy to install and update free libraries and tools.
-                <a href="http://go.microsoft.com/fwlink/?LinkId=245161">Learn more…</a>
-            </li>
-            <li class="three">
-                <h5>Find Web Hosting</h5>
-                You can easily find a web hosting company that offers the right mix of features
-                and price for your applications.
-                <a href="http://go.microsoft.com/fwlink/?LinkId=245164">Learn more…</a>
-            </li>
-        </ol>
-    </section>
+    <script type="text/template" id="leadViewTemplate">
+        <div class="col-lg-6">
+            <h4><%= FirstName  %> <%= LastName %></h4>
+            <ul>
+                <li>Id #: <%= Id %></li>
+                <li>Email: <%= Email %></li>
+                <li>Location: <%= State %>, <%= Country%></li>
+            </ul>
+        </div>
+    </script>
+
+    <script>
+
+        $(document).ready(function () {
+
+
+            var Lead = Backbone.Model.extend({
+                defaults: {
+                    Id: 999,
+                    FirstName: "Steve",
+                    LastName: "Senkus",
+                    Email: "mail@steven-senkus.com",
+                    State: "OR",
+                    Country: "US"
+                },
+                idAttribute: "Id",
+                parse: function (res) {
+                    return res;
+                }
+
+
+            });
+
+            var Leads = Backbone.Collection.extend({
+                url: "http://localhost:44420/api/lead",
+                model: Lead,
+                parse: function (response) {
+                    console.log(response)
+                    return response;
+                }
+
+            });
+
+
+            var LeadView = Backbone.View.extend({
+                template: _.template($('#leadViewTemplate').html()),
+                initialize: function (options) {
+                    console.log('this', this)
+                    console.log('leadview initialize')
+                    this.render()
+
+                },
+                render: function () {
+                    console.log('LeadView rendered')
+                    this.$el.html(this.template(this.model.toJSON()));
+                    $('#leadContainer').append(this.$el);
+                    return this;
+                }
+
+            });
+
+            var LeadContainerView = Backbone.View.extend({
+                el: $('#leadContainer'),
+                initialize: function () {
+
+                },
+                render: function () {
+
+                }
+
+            });
+
+            var leads = new Leads();
+            leads.fetch().then(function () {
+                leads.each(function (ld) {
+                    console.log(ld.get("FirstName"));
+                    var x = new LeadView({ model: ld });
+                });
+            }).then(function () {
+                for (var i = 0; i < 5; i++) {
+                    setTimeout(function () {
+                        var x = new LeadView({ model: new Lead() });
+
+                    }, (500 + (i * 1000)))
+                }
+            });
+
+
+
+
+        });
+
+    </script>
+}
+
+
+
+<div class="jumbotron">
+    <h1>Backbone.js &amp; ASP.NET WebAPI </h1>
+    <p class="lead">It's pretty cool, eh?</p>
+    <p><a class="btn btn-lg btn-success" href="#" role="button">Join muh startup</a></p>
+</div>
+
+<div class="row marketing">
+    <div class="col-lg-12" id="leadContainer">
+
+    </div>
+
 </div>

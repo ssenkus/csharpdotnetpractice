@@ -38,6 +38,12 @@ namespace PracticalWebAPI
                         "~/Content/themes/base/jquery.ui.datepicker.css",
                         "~/Content/themes/base/jquery.ui.progressbar.css",
                         "~/Content/themes/base/jquery.ui.theme.css"));
+            bundles.Add(new ScriptBundle("~/bundles/backbone").Include(
+                        "~/Scripts/underscore-min.js",
+                        "~/Scripts/backbone-min.js"
+                ));
         }
+
+
     }
 }

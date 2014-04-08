@@ -4,29 +4,33 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
+
+    
+    @Styles.Render("~/Content/bootstrap")
     @Styles.Render("~/Content/css")
+
     @Scripts.Render("~/bundles/modernizr")
+
 </head>
 <body>
-    <header>
-        <div class="content-wrapper">
-            <div class="float-left">
-                <p class="site-title">
-                    <a href="~/">ASP.NET Web API</a></p>
-            </div>
-            <div class="float-right">
-                <nav>
-                    <ul id="menu">
-                        <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
-                        <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
-                    </ul>
-                </nav>
-            </div>
+    @*        <div class="container">*@
+    <div class="container">
+        <div class="header">
+            <ul class="nav nav-pills pull-right">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <h3 class="text-muted">Project name</h3>
         </div>
-    </header>
-    @RenderBody()
+        @RenderBody()
+        <div class="footer">
+            <p>&copy; Company 2014</p>
+        </div>
 
+    </div> <!-- /container -->
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/backbone")
     @RenderSection("scripts", required: false)
 </body>
 </html>
