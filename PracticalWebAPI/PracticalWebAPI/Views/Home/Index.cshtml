@@ -27,6 +27,7 @@
                 },
                 idAttribute: "Id",
                 parse: function (res) {
+                    console.log('model parse', res);
                     return res;
                 }
 
@@ -37,7 +38,7 @@
                 url: "http://localhost:44420/api/lead",
                 model: Lead,
                 parse: function (response) {
-                    console.log(response)
+                    console.log('collection parse response',response)
                     return response;
                 }
 
@@ -63,28 +64,52 @@
 
             var LeadContainerView = Backbone.View.extend({
                 el: $('#leadContainer'),
-                initialize: function () {
+                events: {
+                    'click': 'doIt'
+                },
+                leads: [],
+                initialize: function (opts) {
+                    var that = this;
+                    this.collection = opts.collection;
+                    //                    this.listenTo(this.collection, 'reset', this.doIt);
+                    this.collection.fetch().then(function () {
+                        that.collection.each(function (ld) {
+                            that.collection.push(new LeadView({ model: ld }));
+                        });
+                    }).then(function () {
+                        that.render();
+                    });
 
                 },
+                doIt: function () {
+                    console.log('do it')
+                    _.each(this.leads, function (el, idx, list) {
+                        console.log('destroy')
+                        //el.destroy();
+                    });
+                    this.$el.empty();
+                    clearInterval(this.timer);
+                    this.render();
+                },
                 render: function () {
+                    var that = this;
+                    this.timer = setInterval(function () {
+                        that.collection.reset();
+                        that.collection.fetch({ update: true }).then(function () {
+                            that.$el.empty();
+                            that.collection.each(function (lead) {
+                                that.leads.push(new LeadView({ model: lead }));
+                            });
+
+                        });
+                    }, 2000);
 
                 }
-
             });
 
-            var leads = new Leads();
-            leads.fetch().then(function () {
-                leads.each(function (ld) {
-                    console.log(ld.get("FirstName"));
-                    var x = new LeadView({ model: ld });
-                });
-            }).then(function () {
-                for (var i = 0; i < 5; i++) {
-                    setTimeout(function () {
-                        var x = new LeadView({ model: new Lead() });
 
-                    }, (500 + (i * 1000)))
-                }
+            var leadViewContainer = new LeadContainerView({
+                collection: new Leads()
             });
 
 
